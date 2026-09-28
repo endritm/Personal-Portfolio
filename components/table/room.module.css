@@ -1,0 +1,54 @@
+.room {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  justify-items: center;
+  gap: var(--s-5);
+  min-height: calc(100svh - var(--header-h));
+  padding-block: var(--s-5) var(--s-6);
+  padding-inline: var(--gutter);
+  overflow: clip;
+}
+
+.desk {
+  position: relative;
+  /* As large as fits: the full width, or the height left under the header, at 16:10. */
+  width: min(100%, calc((100svh - var(--header-h) - 120px) * 1.6));
+  min-width: min(100%, 820px);
+}
+
+.phone {
+  display: none;
+  width: 100%;
+}
+
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-1) var(--s-3);
+  font: 400 12px/1.5 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.hint a {
+  color: var(--ink);
+}
+
+@media (max-width: 759px) {
+  .desk {
+    display: none;
+  }
+
+  .phone {
+    display: block;
+  }
+
+  .room {
+    align-content: start;
+    min-height: auto;
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,135 @@
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--s-8);
+  padding-block: clamp(48px, 10vw, 128px) var(--s-6);
+}
+
+.lead {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+}
+
+.title {
+  font-size: var(--step-6);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-3);
+  line-height: 1.2;
+  color: var(--ink-2);
+  max-width: 26ch;
+}
+
+.email {
+  font-size: var(--step-2);
+}
+
+.form {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-5);
+}
+
+.field {
+  display: grid;
+  gap: var(--s-2);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field em {
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+.field input,
+.field textarea {
+  font: 400 17px/1.5 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 0;
+  border-color: transparent;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--warn);
+}
+
+.trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.error {
+  color: var(--warn);
+  font-size: 15px;
+}
+
+.submit {
+  justify-self: start;
+  font-size: 15px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: var(--glow);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.sent {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.2;
+  max-width: 24ch;
+}
+
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

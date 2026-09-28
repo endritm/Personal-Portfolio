@@ -1,0 +1,115 @@
+/* The skim layer: everything a skimmer needs, before a single scroll. */
+.skim {
+  display: grid;
+  gap: var(--s-5);
+  padding-block: clamp(48px, 9vw, 120px) var(--s-8);
+}
+
+.title {
+  font-size: var(--step-6);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.skimGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--s-6) var(--s-8);
+  align-items: start;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.connection {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.2;
+  max-width: 30ch;
+  text-wrap: balance;
+}
+
+.connectionLabel {
+  display: block;
+  margin-bottom: var(--s-3);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4) var(--s-5);
+}
+
+.facts dt {
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.facts dd {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.mood {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-2);
+  color: var(--ink-2);
+}
+
+.hero {
+  margin-bottom: var(--s-9);
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+}
+
+.story {
+  padding-top: var(--s-4);
+}
+
+.credits {
+  margin-top: var(--s-8);
+  font: 400 12px/1.6 var(--mono);
+  color: var(--muted);
+}
+
+.next {
+  padding-block: var(--s-6) 0;
+}
+
+.nextLink {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.nextTitle {
+  font-family: var(--serif);
+  font-size: var(--step-5);
+  line-height: 1;
+}
+
+.nextConnection {
+  color: var(--ink-2);
+  max-width: 50ch;
+}
+
+.nextLink:hover .nextTitle {
+  color: var(--glow);
+}
+
+@media (max-width: 800px) {
+  .skimGrid {
+    grid-template-columns: 1fr;
+  }
+}

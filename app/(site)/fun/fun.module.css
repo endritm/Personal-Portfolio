@@ -1,0 +1,91 @@
+/* The one page allowed to play a little. */
+
+.tape {
+  padding-bottom: var(--s-8);
+}
+
+/* A J-card: the paper insert from a cassette case, written by hand. */
+.jcard {
+  max-width: 560px;
+  padding: var(--s-6) var(--s-6) var(--s-7);
+  background: #bdb6a4;
+  color: #1a1812;
+  border-radius: 3px;
+  transform: rotate(-1.2deg);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8);
+}
+
+.side {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-4);
+}
+
+.tracks {
+  margin: 0;
+  padding-left: 1.4em;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.5;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(1.5em - 1px), rgb(26 24 18 / 0.18) calc(1.5em - 1px) 1.5em);
+}
+
+.tracks a {
+  color: inherit;
+}
+
+.artist {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.trackNote {
+  display: block;
+  font: 400 12px/1.4 var(--mono);
+  font-style: normal;
+  margin-bottom: 0.4em;
+}
+
+.board {
+  list-style: none;
+  margin: 0;
+  padding-block: 0;
+  columns: 3 280px;
+  column-gap: var(--s-5);
+}
+
+.board > li {
+  break-inside: avoid;
+  margin-bottom: var(--s-5);
+}
+
+.pinned:nth-child(3n + 1) {
+  transform: rotate(-0.8deg);
+}
+
+.pinned:nth-child(3n + 2) {
+  transform: rotate(0.6deg);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin-top: var(--s-2);
+  font: 400 12px/1.5 var(--mono);
+  color: var(--muted);
+}
+
+.note {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.25;
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}

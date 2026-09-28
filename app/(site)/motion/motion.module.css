@@ -1,0 +1,56 @@
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: var(--s-7) var(--s-5);
+  align-items: start;
+}
+
+.piece {
+  display: grid;
+  gap: 4px;
+}
+
+.piece[data-aspect="16:9"] {
+  grid-column: span 2;
+}
+
+@media (max-width: 700px) {
+  .piece[data-aspect="16:9"] {
+    grid-column: auto;
+  }
+}
+
+.frame {
+  background: var(--surface);
+  margin-bottom: var(--s-3);
+  overflow: hidden;
+}
+
+.lottie,
+.poster {
+  width: 100%;
+  height: auto;
+}
+
+.piece[data-aspect="1:1"] .lottie {
+  aspect-ratio: 1;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: var(--step-2);
+  line-height: 1.1;
+}
+
+.meta,
+.note {
+  font: 400 12px/1.5 var(--mono);
+  color: var(--muted);
+}
+
+.note {
+  color: var(--ink-2);
+}

@@ -1,0 +1,194 @@
+/* The light table, flat. The 3D scene fades in over exactly this. */
+
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+.table {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 1.2% / 1.9%;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.02),
+    0 40px 120px -40px rgb(158 212 232 / 0.18);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+}
+
+.glass {
+  position: absolute;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.fill svg,
+.glass svg,
+.layer svg,
+.labelTape svg,
+.reel svg,
+.pencil svg {
+  position: absolute;
+  inset: 0;
+}
+
+.pencil {
+  position: absolute;
+  transform: rotate(var(--rot));
+  pointer-events: none;
+}
+
+.objects {
+  position: absolute;
+  inset: 0;
+}
+
+.object {
+  position: absolute;
+  display: block;
+  transform: rotate(var(--rot));
+  transition: transform var(--t-med) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.object:focus-visible {
+  outline-offset: 6px;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  transform: translate(var(--dx, 0%), var(--dy, 0%)) rotate(var(--lr, 0deg));
+  transition:
+    transform var(--t-slow) var(--ease-out),
+    filter var(--t-med) var(--ease-out);
+}
+
+/* The patch of glass that brightens around the object you're about to open. */
+.spot {
+  position: absolute;
+  inset: -28%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(236 244 248 / 0.3), rgb(220 234 241 / 0.08) 55%, transparent);
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease-out);
+  pointer-events: none;
+}
+
+.labelTape {
+  position: absolute;
+  transform: rotate(var(--tape-rot));
+  transition: transform var(--t-med) var(--ease-out);
+  filter: drop-shadow(0 1px 0 rgb(0 0 0 / 0.25));
+}
+
+.reel {
+  position: absolute;
+}
+
+.object:hover .spot,
+.object:focus-visible .spot {
+  opacity: 1;
+}
+
+.object:hover .labelTape,
+.object:focus-visible .labelTape {
+  transform: rotate(var(--tape-rot)) translateY(-8%);
+}
+
+/* The second read: the sketch slides into register with the mark underneath. */
+.object:hover .sheet-sketch,
+.object:focus-visible .sheet-sketch {
+  transform: none;
+}
+
+.contact:hover,
+.contact:focus-visible,
+.slides:hover,
+.slides:focus-visible {
+  transform: rotate(var(--rot)) scale(1.015);
+}
+
+.slides:hover .layer,
+.slides:focus-visible .layer {
+  filter: brightness(1.25);
+}
+
+.film:hover .layer,
+.film:focus-visible .layer {
+  transform: translateX(3.5%);
+}
+
+.loupe:hover,
+.loupe:focus-visible {
+  transform: rotate(var(--rot)) scale(1.07);
+}
+
+.object:hover .reel,
+.object:focus-visible .reel {
+  animation: turn 1.8s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Once the 3D scene is showing, the flat drawing steps aside.
+   The links stay, invisible, so keyboard focus still works and still shows. */
+.stage[data-mode="3d"] [data-visual] {
+  visibility: hidden;
+}
+
+.stage[data-mode="3d"] .objects {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stage[data-mode="3d"] .object {
+  pointer-events: none;
+  transform: rotate(var(--rot));
+}
+
+.canvas {
+  position: absolute;
+  /* Slightly larger than the table so a tilted camera never shows an edge. */
+  inset: -5%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms var(--ease-out);
+  cursor: default;
+}
+
+.canvas[data-ready="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.canvas[data-hovering="true"] {
+  cursor: pointer;
+}
+
+/* Daylight in Gjilan: a faint window falling across the room from the left. */
+.daylight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(104deg, transparent 8%, rgb(236 240 244 / 0.05) 9%, rgb(236 240 244 / 0.05) 21%, transparent 22%),
+    linear-gradient(104deg, transparent 23%, rgb(236 240 244 / 0.04) 24%, rgb(236 240 244 / 0.04) 36%, transparent 37%),
+    linear-gradient(90deg, rgb(236 240 244 / 0.045), transparent 60%);
+}
+
+.daylight[data-on="true"] {
+  opacity: 1;
+}

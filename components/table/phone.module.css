@@ -1,0 +1,133 @@
+/* The phone as the light table: the glass fills the screen, the objects swipe past. */
+
+.phone {
+  position: relative;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-block: var(--s-5) var(--s-4);
+  background:
+    repeating-linear-gradient(to right, rgb(220 234 241 / 0.045) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(to bottom, rgb(220 234 241 / 0.045) 0 1px, transparent 1px 32px),
+    radial-gradient(70% 75% at 50% 46%, #3b474f 0%, #2b343a 45%, #1a2024 100%);
+  border-bottom: 1px solid #2c3134;
+}
+
+.track {
+  list-style: none;
+  margin: 0;
+  padding: 0 11vw;
+  display: flex;
+  gap: 6vw;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 11vw;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 78vw;
+  scroll-snap-align: center;
+}
+
+.link {
+  display: grid;
+  gap: var(--s-4);
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  height: min(52svh, 104vw);
+}
+
+.art {
+  position: relative;
+  display: block;
+  width: min(100%, calc(min(52svh, 104vw) * var(--ar)));
+  aspect-ratio: var(--ar);
+  max-height: 100%;
+}
+
+.layer,
+.reel {
+  position: absolute;
+}
+
+.layer {
+  inset: 0;
+  transform: translate(var(--dx, 0%), var(--dy, 0%)) rotate(var(--lr, 0deg));
+}
+
+.layer svg,
+.reel svg,
+.tape svg {
+  position: absolute;
+  inset: 0;
+}
+
+/* Swipe a card to the centre and its sketch slides into register. */
+@supports (animation-timeline: view()) {
+  .card {
+    view-timeline: --card inline;
+  }
+
+  .sketch {
+    animation: register linear both;
+    animation-timeline: --card;
+    animation-range: entry 20% cover 50%;
+  }
+
+  @keyframes register {
+    to {
+      transform: none;
+    }
+  }
+}
+
+.reel {
+  animation: turn 3s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.meta {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-2);
+  text-align: center;
+}
+
+.tape {
+  position: relative;
+  display: block;
+  width: 116px;
+  height: 27px;
+  transform: rotate(-2deg);
+}
+
+.note {
+  max-width: 30ch;
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.counter {
+  margin-top: var(--s-4);
+  text-align: center;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.14em;
+  color: rgb(236 237 232 / 0.6);
+}

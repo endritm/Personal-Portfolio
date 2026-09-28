@@ -1,0 +1,386 @@
+/*
+ * A breakout grid: text keeps a readable measure, media can go wide or full bleed.
+ * Every block picks its own column, so pacing changes per project without new code.
+ */
+.blocks {
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--gutter)
+    [wide-start] minmax(0, 1fr)
+    [inset-start] minmax(0, 760px)
+    [inset-end] minmax(0, 1fr)
+    [wide-end] var(--gutter)
+    [full-end];
+  row-gap: var(--s-9);
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.full {
+  grid-column: full;
+}
+
+.wide {
+  grid-column: wide;
+}
+
+.inset {
+  grid-column: inset;
+}
+
+.left,
+.right {
+  grid-column: wide;
+  width: min(100%, 720px);
+}
+
+.right {
+  justify-self: end;
+}
+
+.media {
+  width: 100%;
+  height: auto;
+}
+
+.onColour {
+  padding: clamp(24px, 6vw, 96px);
+}
+
+.caption {
+  margin-top: var(--s-3);
+  font: 400 12px/1.5 var(--mono);
+  color: var(--muted);
+}
+
+.heading {
+  font-size: var(--step-3);
+  line-height: 1.1;
+  margin-block: var(--s-2) var(--s-4);
+}
+
+/* ---------- text ---------- */
+
+.text {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.prose {
+  display: grid;
+  gap: 1em;
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+.prose a {
+  color: var(--ink);
+}
+
+.lead {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.inlineQuote {
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.statementWrap {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.statement {
+  font-family: var(--serif);
+  font-size: var(--step-5);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+/* ---------- media groups ---------- */
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.labelled {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.applications {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--s-6) var(--s-4);
+}
+
+@media (max-width: 700px) {
+  .pair {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- the connection ---------- */
+
+.blueLabel {
+  color: var(--blue);
+}
+
+/* The Connection happens on the light table: the band is lit glass. */
+.connection {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-6);
+  padding: clamp(40px, 8vw, 120px) clamp(20px, 5vw, 80px);
+  text-align: center;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(to right, rgb(220 234 241 / 0.04) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(to bottom, rgb(220 234 241 / 0.04) 0 1px, transparent 1px 40px),
+    radial-gradient(70% 80% at 50% 45%, #33404a 0%, #242c31 50%, #171c1f 100%);
+  box-shadow: inset 0 0 0 1px rgb(220 234 241 / 0.08);
+}
+
+.connectionMark {
+  width: min(100%, 640px);
+}
+
+.connectionStatement {
+  font-family: var(--serif);
+  font-size: var(--step-4);
+  line-height: 1.08;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.connectionNote {
+  font: 400 12px/1.5 var(--mono);
+  color: var(--ink-2);
+  max-width: 50ch;
+}
+
+.lineBox {
+  position: relative;
+  width: min(100%, 720px);
+}
+
+.lineMark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lineSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.linePath {
+  stroke: var(--blue);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1400ms var(--ease-in-out) 200ms;
+}
+
+.lineBox[data-drawn="true"] .linePath {
+  stroke-dashoffset: 0;
+}
+
+.overlay {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  width: min(100%, 720px);
+}
+
+.overlayStack {
+  display: grid;
+  width: 100%;
+}
+
+.overlayFirst,
+.overlaySecond {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+
+.overlaySecond {
+  opacity: 0;
+}
+
+.overlayStack[data-second="true"] .overlaySecond {
+  opacity: 1;
+}
+
+.overlayStack[data-second="true"] .overlayFirst {
+  opacity: 0.12;
+}
+
+.overlayButton {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.overlayButton[aria-pressed="true"] {
+  background: var(--blue);
+  color: var(--bg);
+}
+
+/* ---------- palette, type, quote, steps ---------- */
+
+.palette {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--s-4);
+}
+
+.swatch {
+  display: grid;
+  gap: 4px;
+}
+
+.chip {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  margin-bottom: var(--s-2);
+}
+
+.chip[data-empty="true"] {
+  border: 1px dashed var(--line-strong);
+}
+
+.swatchName {
+  font-size: 15px;
+}
+
+.swatchHex,
+.swatchNote {
+  font: 400 12px/1.4 var(--mono);
+  color: var(--muted);
+}
+
+.type {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.typeName {
+  font-family: var(--serif);
+  font-size: var(--step-5);
+  line-height: 1;
+}
+
+.typeSample {
+  font-size: var(--step-3);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.typeNote {
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+.quote blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1.2;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.stepItem {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding-top: var(--s-4);
+}
+
+.stepNumber {
+  font: 400 12px/1 var(--mono);
+  color: var(--muted);
+}
+
+.stepColour {
+  height: 10px;
+  border-radius: 2px;
+}
+
+.stepLabel {
+  font-family: var(--serif);
+  font-size: var(--step-3);
+  line-height: 1;
+}
+
+.stepText {
+  color: var(--ink-2);
+}
+
+.spacer[data-size="s"] {
+  height: 0;
+}
+
+.spacer[data-size="m"] {
+  height: var(--s-8);
+}
+
+.spacer[data-size="l"] {
+  height: var(--s-10);
+}
+
+.spacer {
+  grid-column: full;
+}

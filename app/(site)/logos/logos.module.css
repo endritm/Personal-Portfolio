@@ -1,0 +1,65 @@
+/* The logo collection is the slide page from the table: mounts on lit glass. */
+.sheet {
+  list-style: none;
+  margin: 0;
+  padding: clamp(16px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(46%, 200px), 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(to right, rgb(220 234 241 / 0.04) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(to bottom, rgb(220 234 241 / 0.04) 0 1px, transparent 1px 40px),
+    radial-gradient(70% 75% at 50% 45%, #33404a 0%, #242c31 50%, #171c1f 100%);
+  box-shadow: inset 0 0 0 1px rgb(220 234 241 / 0.08);
+}
+
+.slide {
+  display: grid;
+  gap: 6px;
+  padding: 10% 10% 8%;
+  aspect-ratio: 1;
+  align-content: start;
+  background: #262b2e;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgb(236 237 232 / 0.12);
+  text-decoration: none;
+  transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out);
+}
+
+a.slide:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 0 1px rgb(236 237 232 / 0.25),
+    0 18px 40px -20px rgb(158 212 232 / 0.4);
+}
+
+.window {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 3 / 2;
+  background: rgb(220 234 241 / 0.72);
+  overflow: hidden;
+}
+
+.mark {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.initial {
+  font: 600 clamp(28px, 4vw, 44px) / 1 var(--sans);
+  color: #0b0c0d;
+}
+
+.name {
+  margin-top: 6px;
+  font: 400 12px/1.3 var(--mono);
+  color: var(--ink);
+}
+
+.meta {
+  font: 400 11px/1.3 var(--mono);
+  color: var(--muted);
+}

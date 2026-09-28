@@ -1,0 +1,30 @@
+.about {
+  display: grid;
+  gap: var(--s-6);
+  padding-block: clamp(48px, 10vw, 128px) var(--s-6);
+}
+
+.headline {
+  font-size: var(--step-6);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+.body {
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+  margin-left: auto;
+}
+
+.location {
+  font: 400 13px/1.6 var(--mono);
+  color: var(--muted);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+}

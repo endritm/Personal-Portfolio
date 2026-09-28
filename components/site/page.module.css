@@ -1,0 +1,45 @@
+.header {
+  display: grid;
+  gap: var(--s-4);
+  padding-block: clamp(48px, 10vw, 128px) var(--s-8);
+}
+
+.title {
+  font-size: var(--step-6);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--step-3);
+  line-height: 1.2;
+  color: var(--ink-2);
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+.empty {
+  padding-block: var(--s-6);
+  color: var(--muted);
+  font: 400 13px/1.6 var(--mono);
+}
+
+.section {
+  padding-block: var(--s-6);
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionHead a {
+  font: 400 12px/1.4 var(--mono);
+  color: var(--ink-2);
+}
